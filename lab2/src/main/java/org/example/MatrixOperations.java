@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class MatrixOperations {
     // Максимальний розмір матриці
-    private static final int MAX_SIZE = 20;
+    private static final int maxSize = 20;
     // Діапазон рандомних чисел
-    private static final int RANDOM_MIN = 1;
-    private static final int RANDOM_MAX = 100;
+    private static final int randomMin = 1;
+    private static final int randomMax = 100;
 
     private int[][] matrix;
     private int width;
@@ -20,17 +20,18 @@ public class MatrixOperations {
         initializeMatrix();
         printMatrix();
         findMinMax();
-        calculateAverage();
+        calculateArithmeticAverage();
+        calculateGeometricAverage();
     }
 
     public void readMatrixSize() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введіть ширину матриці (не більше " + MAX_SIZE + "):");
+        System.out.println("Введіть ширину матриці (не більше " + maxSize + "):");
         width = scanner.nextInt();
-        System.out.println("Введіть висоту матриці (не більше " + MAX_SIZE + "):");
+        System.out.println("Введіть висоту матриці (не більше " + maxSize + "):");
         height = scanner.nextInt();
         // Перевірка на максимальний розмір
-        if (width > MAX_SIZE || height > MAX_SIZE) {
+        if (width > maxSize || height > maxSize) {
             System.out.println("Розмір матриці перевищує максимально допустимий розмір.");
             System.exit(1);
         }
@@ -53,7 +54,7 @@ public class MatrixOperations {
             // Генерування рандомних чисел для матриці
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
-                    matrix[i][j] = random.nextInt(RANDOM_MAX - RANDOM_MIN + 1) + RANDOM_MIN;
+                    matrix[i][j] = random.nextInt(randomMax - randomMin + 1) + randomMin;
                 }
             }
         }
@@ -86,7 +87,7 @@ public class MatrixOperations {
         System.out.println("Максимальний елемент: " + max);
     }
 
-    public void calculateAverage() {
+    public void calculateArithmeticAverage() {
         double sum = 0;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -95,5 +96,16 @@ public class MatrixOperations {
         }
         double average = sum / (width * height);
         System.out.println("Середнє арифметичне: " + average);
+    }
+
+    public void calculateGeometricAverage() {
+        double product = 1.0;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                product *= matrix[i][j];
+            }
+        }
+        double geometricMean = Math.pow(product, 1.0 / (width * height));
+        System.out.println("Середнє геометричне: " + geometricMean);
     }
 }
