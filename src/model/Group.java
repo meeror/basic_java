@@ -5,7 +5,23 @@ import java.util.Objects;
 
 public class Group  {
 
-    private int maxNumberOfStudents;
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    private Human head;
+
+    public Human getHead() {
+        return head;
+    }
+
+    public void setHead(Human head) {
+        this.head = head;
+    }
+
     List<Student> studentList;
 
     public List<Student> getStudentList() {
@@ -15,18 +31,10 @@ public class Group  {
         this.studentList = listStudents;
     }
 
-    public int getMaxNumberOfStudents() {
-        return maxNumberOfStudents;
-    }
-
-    public void setMaxNumberOfStudents(int maxNumberOfStudents) {
-        this.maxNumberOfStudents = maxNumberOfStudents;
-    }
-
     @Override
     public String toString() {
 
-        return String.format("Group{maxNumberOfStudents=%d, students=%s}", maxNumberOfStudents, studentList);
+        return String.format("Group{name=%s, head=%s, students=%s}", name, head, studentList);
 
     }
 
@@ -37,13 +45,12 @@ public class Group  {
 
         if (!(o instanceof Group group)) return false;
 
-        return maxNumberOfStudents == group.maxNumberOfStudents &&
-                studentList.equals(group.studentList);
+        return studentList.equals(group.studentList);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(maxNumberOfStudents, studentList);
+        return Objects.hash(studentList);
     }
 }
