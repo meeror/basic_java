@@ -3,7 +3,15 @@ package model;
 import java.util.List;
 import java.util.Objects;
 
-public class Faculty extends Object {
+public class Faculty {
+
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
     private Human head;
 
     public Human getHead() {
@@ -12,16 +20,6 @@ public class Faculty extends Object {
 
     public void setHead(Human head) {
         this.head = head;
-    }
-
-    private int maxNumberOfDepartment;
-
-    public int getNumberOfDepartment() {
-        return maxNumberOfDepartment;
-    }
-
-    public void setNumberOfDepartment(int maxNumberOfDepartment) {
-        this.maxNumberOfDepartment = maxNumberOfDepartment;
     }
 
     private List<Department> departmentList;
@@ -36,7 +34,7 @@ public class Faculty extends Object {
     @Override
     public String toString() {
 
-        return String.format("Faculty{boss=%s, maxNumberOfDepartment=%d, departments=%s}", head, maxNumberOfDepartment, departmentList);
+        return String.format("Faculty{name=%s, head=%s, departments=%s}", name, head, departmentList);
 
     }
 
@@ -47,14 +45,13 @@ public class Faculty extends Object {
 
         if (!(o instanceof Faculty faculty)) return false;
 
-        return maxNumberOfDepartment == faculty.maxNumberOfDepartment &&
-                head.equals(faculty.head) &&
+        return  head.equals(faculty.head) &&
                 departmentList.equals(faculty.departmentList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(head, maxNumberOfDepartment, departmentList);
+        return Objects.hash(head, departmentList);
     }
 }
 
