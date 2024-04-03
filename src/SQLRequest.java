@@ -47,7 +47,6 @@ public class SQLRequest {
             e.printStackTrace();
         } finally
         {
-
             try {
                 if (resultSet != null) resultSet.close();
                 if (statement != null) statement.close();
